@@ -1,39 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @project.title %>
-</p>
-
-<p>
-  <strong>Subtitle:</strong>
-  <%= @project.subtitle %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
-
-<p>
-  <strong>Main image:</strong>
-  <%= @project.main_image %>
-</p>
-
-<p>
-  <strong>Thumb image:</strong>
-  <%= @project.thumb_image %>
-</p>
-
-<p>
-  <strong>Source link:</strong>
-  <%= @project.source_link %>
-</p>
-
-<p>
-  <strong>View link:</strong>
-  <%= @project.view_link %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= image_tag @project.main_image %>
+<h1><%= @project.title %></h1>
+<p><em><%= @project.subtitle %></em></p>
+<p><%= @project.description %></p>
+<p><%= link_to 'View Live', @project.view_link %></p>
+<p><%= link_to 'View Source', @project.source_link %></p>
+<p><%= link_to "Edit Project", edit_project_path(@project.id) %></p>
+<p><%= link_to 'Delete Project', @project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } %></p>
+<p><%= link_to 'Back to Projects', projects_path %></p>
