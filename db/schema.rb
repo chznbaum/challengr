@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415211435) do
+ActiveRecord::Schema.define(version: 20170417225433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20170415211435) do
   create_table "challenges", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.text     "rules"
     t.text     "main_image"
     t.text     "thumb_image"
     t.text     "official_link"
