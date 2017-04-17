@@ -2,37 +2,17 @@
 
 <h1>Projects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Subtitle</th>
-      <th>Description</th>
-      <th>Main image</th>
-      <th>Thumb image</th>
-      <th>Source link</th>
-      <th>View link</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= project.title %></td>
-        <td><%= project.subtitle %></td>
-        <td><%= project.description %></td>
-        <td><%= project.main_image %></td>
-        <td><%= project.thumb_image %></td>
-        <td><%= project.source_link %></td>
-        <td><%= project.view_link %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @projects.each do |project| %>
+  <section>
+    <h2><%= project.title %></h2>
+    <p><%= project.subtitle %></p>
+    <%= image_tag project.thumb_image %>
+    <p><%= project.description %></p>
+    <p><%= link_to 'Show More', project %></p>
+    <p><%= link_to 'Edit Project', edit_project_path(project) %></p>
+    <p><%= link_to 'Delete Project', project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } %></p>
+  </section>
+<% end %>
 
 <br>
 
