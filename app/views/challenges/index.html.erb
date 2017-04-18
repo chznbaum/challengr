@@ -2,37 +2,16 @@
 
 <h1>Challenges</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Rules</th>
-      <th>Main image</th>
-      <th>Thumb image</th>
-      <th>Official link</th>
-      <th>Register link</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @challenges.each do |challenge| %>
-      <tr>
-        <td><%= challenge.name %></td>
-        <td><%= challenge.description %></td>
-        <td><%= challenge.rules %></td>
-        <td><%= challenge.main_image %></td>
-        <td><%= challenge.thumb_image %></td>
-        <td><%= challenge.official_link %></td>
-        <td><%= challenge.register_link %></td>
-        <td><%= link_to 'Show', challenge %></td>
-        <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-        <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @challenges.each do |challenge| %>
+  <section>
+    <h2><%= link_to challenge.name, challenge_path(challenge) %></h2>
+    <%= image_tag challenge.thumb_image %>
+    <p><%= challenge.description %></p>
+    <p><%= link_to 'Show More', challenge %></p>
+    <p><%= link_to 'Edit Challenge', edit_challenge_path(challenge) %></p>
+    <p><%= link_to 'Delete Challenge', challenge, method: :delete, data: { confirm: 'Are you sure you want to delete this challenge?' } %></p>
+  </section>
+<% end %>
 
 <br>
 
