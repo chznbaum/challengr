@@ -1,34 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @challenge.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @challenge.description %>
-</p>
-
-<p>
-  <strong>Main image:</strong>
-  <%= @challenge.main_image %>
-</p>
-
-<p>
-  <strong>Thumb image:</strong>
-  <%= @challenge.thumb_image %>
-</p>
-
-<p>
-  <strong>Official link:</strong>
-  <%= @challenge.official_link %>
-</p>
-
-<p>
-  <strong>Register link:</strong>
-  <%= @challenge.register_link %>
-</p>
-
-<%= link_to 'Edit', edit_challenge_path(@challenge) %> |
-<%= link_to 'Back', challenges_path %>
+<%= image_tag @challenge.main_image %>
+<h1><%= @challenge.name %></h1>
+<p><%= @challenge.description %></p>
+<p><%= link_to 'Join Challenge', @challenge.register_link %></p>
+<p><%= link_to 'View Challenge Homepage', @challenge.official_link %></p>
+<p><%= link_to "Edit Challenge", edit_challenge_path(@challenge.id) %></p>
+<p><%= link_to 'Delete Challenge', @challenge, method: :delete, data: { confirm: 'Are you sure you want to delete this challenge?' } %></p>
+<p><%= link_to 'Back to Challenges', challenges_path %></p>
