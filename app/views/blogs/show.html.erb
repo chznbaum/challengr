@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= @blog.title %></h1>
-<p><%= @blog.created_at %></p>
 <p><%= @blog.body %></p>
 <p><%= link_to "Edit Post", edit_blog_path(@blog.id) %></p>
 <p><%= link_to 'Delete Post', @blog, method: :delete, data: { confirm: 'Are you sure you want to delete this blog post?' } %></p>
