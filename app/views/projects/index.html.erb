@@ -4,7 +4,7 @@
 
 <% @projects.each do |project| %>
   <section>
-    <h2><%= link_to project.title, project_show_path(project) %></h2>
+    <h2><%= link_to project.title, project_path(project) %></h2>
     <p><%= project.subtitle %></p>
     <%= image_tag project.thumb_image %>
     <p><%= project.description %></p>
