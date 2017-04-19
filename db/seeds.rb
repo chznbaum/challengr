@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+# Users
 User.create!(name: "Example User",
              username: "example_user",
              email: "example@challengr.com",
@@ -23,6 +25,17 @@ end
 
 puts "#{User.count} users created."
 
+# Following relationships
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
+puts "#{Relationship.count} relationships created."
+
+# Blogs
 10.times do |blog|
   Blog.create!(
     title: Faker::Lorem.words(7).join(" ").titleize,
@@ -32,6 +45,7 @@ end
 
 puts "#{Blog.count} blog posts created."
 
+# Challenges
 6.times do |challenge|
   Challenge.create!(
     name: Faker::Lorem.words(3).join(" ").titleize,
@@ -45,6 +59,7 @@ end
 
 puts "#{Challenge.count} challenges created."
 
+# Projects
 9.times do |project|
   Project.create!(
     title: Faker::Lorem.words(3).join(" ").titleize,
