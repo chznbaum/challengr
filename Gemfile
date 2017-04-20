@@ -58,3 +58,6 @@ gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails
 
 # devise for authentication
 gem 'devise', '~> 4.2', '>= 4.2.1'
+
+# will_paginate for pagination
+gem 'will_paginate'
