@@ -35,12 +35,23 @@ followers.each { |follower| follower.follow(user) }
 
 puts "#{Relationship.count} relationships created."
 
-# Blogs
-10.times do |blog|
-  Blog.create!(
-    title: Faker::Lorem.words(7).join(" ").titleize,
-    body: Faker::Lorem.paragraphs(3).join("\n\n")
+# Topics
+6.times do |topic|
+  Topic.create!(
+    title: Faker::Lorem.words(2).join(" ").titleize
   )
+end
+
+# Blogs
+users.each do |user|
+  3.times do |blog|
+    Blog.create!(
+      title: Faker::Lorem.words(7).join(" ").titleize,
+      body: Faker::Lorem.paragraphs(3).join("\n\n"),
+      user_id: user.id,
+      topic_id: rand(1..6)
+      )
+  end
 end
 
 puts "#{Blog.count} blog posts created."
