@@ -36,4 +36,9 @@ class User < ApplicationRecord
   def following?(other_user)
     following.include?(other_user)
   end
+
+  # Defines a proto-feed
+  def feed
+    Blog.where("user_id = ?", id)
+  end
 end
