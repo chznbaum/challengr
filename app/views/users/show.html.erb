@@ -6,4 +6,13 @@
 <% if current_user%>
     <%= render partial: 'follow_form' %>
 <% end %>
+<section>
+    <% @user.blogs.each do |blog|%>
+        <h2><%= link_to blog.title, blog_path(blog) %></h2>
+        <p>Posted at <%= blog.created_at %></p>
+        <p>Category: <%= blog.topic.title %></p>
+        <p><%= blog.body %></p>
+        <p><%= link_to 'Show More', blog %></p>
+    <% end %>
+</section>
 <%= link_to 'Back', users_path %>
