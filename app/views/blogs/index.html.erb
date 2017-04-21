@@ -5,7 +5,8 @@
 <% @blogs.each do |blog| %>
   <section>
     <h2><%= link_to blog.title, blog_path(blog) %></h2>
-    <p><%= blog.created_at %></p>
+    <p>Posted by <%= link_to blog.user.username, blog.user %> at <%= blog.created_at %></p>
+    <p>Category: <%= blog.topic.title %></p>
     <p><%= link_to blog.status, toggle_status_blog_path(blog) %></p>
     <p><%= blog.body %></p>
     <p><%= link_to 'Show More', blog %></p>

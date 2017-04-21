@@ -1,10 +1,9 @@
-<% provide(:title, @user.name) %>
+<h1><%= @user.name %></h1>
+<em><%= @user.username %></em>
 <section class="stats">
     <%= render 'shared/stats' %>
 </section>
-<p>Current User: <%= current_user.name %></p>
-<p>On User Page: <%= @user.name %></p>
-<div>
+<% if current_user%>
     <%= render partial: 'follow_form' %>
-</div>
+<% end %>
 <%= link_to 'Back', users_path %>
