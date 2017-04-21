@@ -2,6 +2,8 @@
 
 <h1>Blogs</h1>
 
+<%= will_paginate %>
+
 <% @blogs.each do |blog| %>
   <section>
     <h2><%= link_to blog.title, blog_path(blog) %></h2>
@@ -14,6 +16,8 @@
     <p><%= link_to 'Delete Post', blog, method: :delete, data: { confirm: 'Are you sure you want to delete this blog post?' } %></p>
   </section>
 <% end %>
+
+<%= will_paginate %>
 
 <br>
 
