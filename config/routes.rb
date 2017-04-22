@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
-  resources :users, path: '' do
+  resources :users, path: '', except: :index do
     member do
       get :following, :followers
     end

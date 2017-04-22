@@ -3,12 +3,6 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
-  def index
-    @user = User.all
-    @users = @user.paginate(page: params[:page])
-  end
 
   def profile
     @user = User.find(current_user)
@@ -48,14 +42,14 @@ class UsersController < ApplicationController
 
   def following
     @title = "Following"
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow'
   end
 
   def followers
     @title = "Followers"
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
   end
@@ -63,12 +57,12 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
     end
 
      # Confirms the correct user
     def correct_user
-      @user = User.find(params[:id])
+      @user = User.friendly.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
 
@@ -78,6 +72,6 @@ class UsersController < ApplicationController
     end
 
     def set_blog
-      @blog = Blog.friendly.find(params[:blog_id])
+      @blog = @user.blogs.friendly.find(params[:blog_id])
     end
 end
