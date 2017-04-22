@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
-  resources :users do
+  resources :users, path: '' do
     member do
       get :following, :followers
     end
-    resources :blogs, except: :index do
+    resources :blogs, path: '', except: :index do
       member do
         get :toggle_status
       end
