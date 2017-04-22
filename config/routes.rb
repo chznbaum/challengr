@@ -4,6 +4,11 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :blogs, except: :index do
+      member do
+        get :toggle_status
+      end
+    end
   end
   get 'about', to: 'pages#about'
   get 'dev', to: 'pages#dev'
@@ -12,11 +17,6 @@ Rails.application.routes.draw do
   get 'terms', to: 'pages#terms'
   get 'privacy', to: 'pages#privacy'
 
-  resources :blogs do
-    member do
-      get :toggle_status
-    end
-  end
   resources :challenges
   resources :projects
   resources :relationships, only: [:create, :destroy]

@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
-
 <h1><%= @blog.title %></h1>
 <p>Posted by <%= link_to @blog.user.username, @blog.user %> at <%= @blog.created_at%></p>
 <p>Category: <%= @blog.topic.title %></p>
 <p><%= @blog.body %></p>
-<p><%= link_to "Edit Post", edit_blog_path(@blog.id) %></p>
-<p><%= link_to 'Delete Post', @blog, method: :delete, data: { confirm: 'Are you sure you want to delete this blog post?' } %></p>
-<p><%= link_to 'Back to Blog Posts', blogs_path %></p>
+<p><%= link_to "Edit Post", [:edit, @blog.user, @blog] %></p>
+<p><%= link_to 'Delete Post', [@blog.user, @blog], method: :delete, data: { confirm: 'Are you sure you want to delete this blog post?' } %></p>
+<p><%= link_to 'Back to Blog Posts', @blog.user %></p>

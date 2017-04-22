@@ -11,11 +11,11 @@
     <%= will_paginate @user_posts %>
     
     <% @user_posts.each do |blog|%>
-        <h2><%= link_to blog.title, blog_path(blog) %></h2>
+        <h2><%= link_to blog.title, url_for([@user, blog]) %></h2>
         <p>Posted at <%= blog.created_at %></p>
         <p>Category: <%= blog.topic.title %></p>
         <p><%= blog.body %></p>
-        <p><%= link_to 'Show More', blog %></p>
+        <p><%= link_to 'Show More', url_for([@user, blog]) %></p>
     <% end %>
 
     <%= will_paginate @user_posts %>

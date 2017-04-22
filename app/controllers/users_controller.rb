@@ -10,6 +10,11 @@ class UsersController < ApplicationController
     @users = @user.paginate(page: params[:page])
   end
 
+  def profile
+    @user = User.find(current_user)
+    @user_posts = @user.blogs.paginate(page: params[:page], :per_page => 3)
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -70,5 +75,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :username, :email, :password)
+    end
+
+    def set_blog
+      @blog = Blog.friendly.find(params[:blog_id])
     end
 end
