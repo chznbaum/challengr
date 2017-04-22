@@ -2,6 +2,8 @@ class Project < ApplicationRecord
     include Placeholder
     validates_presence_of :title, :description, :main_image, :thumb_image
 
+    belongs_to :user
+
     after_initialize :set_defaults
 
     def set_defaults
