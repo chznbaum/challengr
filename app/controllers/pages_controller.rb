@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    if logged_in?
+    if current_user.is_a?(User)
       @feed_items = current_user.feed.paginate(:page => params[:page], :per_page => 20)
     end
   end
