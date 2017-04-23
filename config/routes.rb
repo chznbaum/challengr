@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    resources :projects
     resources :blogs, path: '', except: :index do
       member do
         get :toggle_status
@@ -18,7 +19,6 @@ Rails.application.routes.draw do
   get 'privacy', to: 'pages#privacy'
 
   resources :challenges
-  resources :projects
   resources :relationships, only: [:create, :destroy]
 
   root to: 'pages#home'
