@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :blogs, dependent: :destroy
   has_many :projects, dependent: :destroy
+  has_many :assignments
+  has_many :roles, through: :assignments
 
   def first_name
     self.name.split.first
@@ -24,6 +26,11 @@ class User < ApplicationRecord
 
   def last_name
     self.name.split.last
+  end
+
+  # Check if a given role matches any of the user's roles
+  def role?(role)
+    current_user.roles.any? { |r| r.name.underscore.to_sym == role }
   end
 
   # Follows a user
