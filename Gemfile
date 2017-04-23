@@ -61,3 +61,6 @@ gem 'devise', '~> 4.2', '>= 4.2.1'
 
 # will_paginate for pagination
 gem 'will_paginate'
+
+# pundit for role policies
+gem 'pundit'

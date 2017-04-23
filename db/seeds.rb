@@ -7,12 +7,38 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Users
+['challenger', 'creator', 'banned', 'moderator', 'admin'].each do |role|
+  Role.find_or_create_by({ name: role })
+end
+
+puts "#{Role.count} roles created."
+
 User.create!(name: "Example User",
              username: "example_user",
              email: "example@challengr.com",
-             password: "foobarfoobarfoobar")
+             password: "passwordpassword",)
 
-99.times do |user|
+User.create!(name: "Creator User",
+             username: "creator_user",
+             email: "creator@challengr.com",
+             password: "passwordpassword")
+
+User.create!(name: "Banned User",
+             username: "banned_user",
+             email: "banned@challengr.com",
+             password: "passwordpassword")
+
+User.create!(name: "Moderator User",
+             username: "moderator_user",
+             email: "moderator@challengr.com",
+             password: "passwordpassword")
+
+User.create!(name: "Admin User",
+             username: "admin_user",
+             email: "admin@challengr.com",
+             password: "passwordpassword")
+
+95.times do |user|
   name = Faker::Name.name
   username = Faker::Internet.user_name(name, %w(. _ -))
   email = "example-#{user+1}@challengr.com"
@@ -24,6 +50,33 @@ User.create!(name: "Example User",
 end
 
 puts "#{User.count} users created."
+
+# Role Assignments
+User.all.each do |user|
+  Assignment.create!(
+    user_id: user.id,
+    role_id: 1
+  )
+end
+
+roles = [2, 4, 5]
+roles.each do |role|
+  Assignment.create!(
+    user_id: 1,
+    role_id: role
+  )
+  Assignment.create!(
+    user_id: role,
+    role_id: role
+  )
+end
+
+Assignment.create!(
+  user_id: 3,
+  role_id: 3
+)
+
+puts "#{Assignment.count} role assignments created."
 
 # Following relationships
 users = User.all
@@ -41,6 +94,8 @@ puts "#{Relationship.count} relationships created."
     title: Faker::Lorem.words(2).join(" ").titleize
   )
 end
+
+puts "#{Topic.count} topics created."
 
 # Blogs
 users.each do |user|

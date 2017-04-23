@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  after_action :default_role, only: [:create]
 
   def profile
     @user = User.find(current_user)
@@ -56,6 +56,13 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def default_role
+      Assignment.create!(
+        user_id: current_user.id,
+        role_id: 1
+      )
+    end
+
     def set_user
       @user = User.friendly.find(params[:id])
     end
