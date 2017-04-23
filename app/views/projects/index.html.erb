@@ -4,16 +4,17 @@
 
 <% @projects.each do |project| %>
   <section>
-    <h2><%= link_to project.title, project_path(project) %></h2>
+    <h2><%= link_to project.title, [project.user, project] %></h2>
     <p><%= project.subtitle %></p>
+    <p>Updated by <%= link_to project.user.username, project.user %> at <%= project.updated_at %></p>
     <%= image_tag project.thumb_image %>
     <p><%= project.description %></p>
-    <p><%= link_to 'Show More', project %></p>
-    <p><%= link_to 'Edit Project', edit_project_path(project) %></p>
-    <p><%= link_to 'Delete Project', project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } %></p>
+    <p><%= link_to 'Show More', [project.user, project] %></p>
+    <p><%= link_to 'Edit Project', [:edit, project.user, project] %></p>
+    <p><%= link_to 'Delete Project', [project.user, project], method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } %></p>
   </section>
 <% end %>
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Project', new_user_project_path %>

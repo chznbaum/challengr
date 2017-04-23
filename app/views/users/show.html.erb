@@ -6,6 +6,7 @@
 <% if current_user.is_a?(User) && current_user != @user %>
     <%= render partial: 'follow_form' %>
 <% end %>
+<p><%= link_to "#{@user.username}'s Projects", user_projects_path(@user) %></p>
 <section>
 
     <%= will_paginate @user_posts %>

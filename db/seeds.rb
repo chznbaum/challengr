@@ -71,16 +71,19 @@ end
 puts "#{Challenge.count} challenges created."
 
 # Projects
-9.times do |project|
-  Project.create!(
-    title: Faker::Lorem.words(3).join(" ").titleize,
-    subtitle: Faker::Lorem.words(5).join(" ").titleize,
-    description: Faker::Lorem.paragraph(3, false, 3),
-    main_image: "http://placehold.it/600x400",
-    thumb_image: "http://placehold.it/350x200",
-    source_link: "http://github.com",
-    view_link: "http://example.com"
-  )
+users.each do |user|
+  9.times do |project|
+    Project.create!(
+      title: Faker::Lorem.words(3).join(" ").titleize,
+      subtitle: Faker::Lorem.words(5).join(" ").titleize,
+      description: Faker::Lorem.paragraph(3, false, 3),
+      main_image: "http://placehold.it/600x400",
+      thumb_image: "http://placehold.it/350x200",
+      source_link: "http://github.com",
+      view_link: "http://example.com",
+      user_id: user.id
+    )
+  end
 end
 
 puts "#{Project.count} projects created."

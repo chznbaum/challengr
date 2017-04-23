@@ -3,12 +3,6 @@ class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy, :toggle_status]
   before_action :logged_in_user, only: [:new, :create, :edit, :update, :destroy]
 
-  # GET /blogs
-  # GET /blogs.json
-  def index
-    @blogs = current_user.blogs.all.paginate(page: params[:page])
-  end
-
   # GET /blogs/1
   # GET /blogs/1.json
   def show
@@ -30,11 +24,9 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: 'Blog was successfully created.' }
-        format.json { render :show, status: :created, location: @blog }
+        format.html { redirect_to user_blog_path, notice: 'Blog was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,11 +36,9 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update(blog_params)
-        format.html { redirect_to user_blog_path ([@user, @blog]), notice: 'Blog was successfully updated.' }
-        format.json { render :show, status: :ok, location: @blog }
+        format.html { redirect_to user_blog_path, notice: 'Blog was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @blog.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +49,6 @@ class BlogsController < ApplicationController
     @blog.destroy
     respond_to do |format|
       format.html { redirect_to url_for([@user, @blogs]), notice: 'Blog was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -69,7 +58,7 @@ class BlogsController < ApplicationController
     elsif @blog.published?
       @blog.draft!
     end
-    redirect_to blogs_url, notice: 'Post status has been updated.'
+    redirect_to user_blogs_url, notice: 'Post status has been updated.'
   end
 
   private
