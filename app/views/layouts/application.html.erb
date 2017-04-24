@@ -21,15 +21,6 @@
       <%= link_to "Register", new_user_registration_path %>
     <% end %>
     <%= yield %>
-    <footer>
-      <nav id="footer-nav">
-        <div><%= link_to 'About', about_path %></div>
-        <div><%= link_to 'Help', help_path %></div>
-        <div><%= link_to 'Support', support_path %></div>
-        <div><%= link_to 'Terms', terms_path %></div>
-        <div><%= link_to 'Privacy', privacy_path %></div>
-        <div><%= link_to 'Dev', dev_path %></div>
-      </nav>
-    </footer>
+    <%= render "shared/footer" %>
   </body>
 </html>
