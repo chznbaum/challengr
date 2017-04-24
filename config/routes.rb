@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
+  
+  get 'about', to: 'pages#about'
+  get 'dev', to: 'pages#dev'
+  get 'help', to: 'pages#help'
+  get 'support', to: 'pages#support'
+  get 'terms', to: 'pages#terms'
+  get 'privacy', to: 'pages#privacy'
+
   resources :users, path: '', except: :index do
     member do
       get :following, :followers
@@ -11,12 +19,6 @@ Rails.application.routes.draw do
       end
     end
   end
-  get 'about', to: 'pages#about'
-  get 'dev', to: 'pages#dev'
-  get 'help', to: 'pages#help'
-  get 'support', to: 'pages#support'
-  get 'terms', to: 'pages#terms'
-  get 'privacy', to: 'pages#privacy'
 
   resources :challenges
   resources :relationships, only: [:create, :destroy]

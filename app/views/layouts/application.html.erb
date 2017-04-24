@@ -11,6 +11,13 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+    <nav id="top-nav">
+      <div><%= link_to 'Home', root_path %></div>
+      <% if current_user.is_a?(User) %>
+        <div><%= link_to 'Projects', user_projects_path(current_user) %></div>
+        <div><%= link_to 'Profile', user_path(current_user) %></div>
+      <% end %>
+    </nav>
     <% if current_user.is_a?(User) %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete %>
     <% else %>
@@ -18,5 +25,15 @@
       <%= link_to "Register", new_user_registration_path %>
     <% end %>
     <%= yield %>
+    <footer>
+      <nav id="footer-nav">
+        <div><%= link_to 'About', about_path %></div>
+        <div><%= link_to 'Help', help_path %></div>
+        <div><%= link_to 'Support', support_path %></div>
+        <div><%= link_to 'Terms', terms_path %></div>
+        <div><%= link_to 'Privacy', privacy_path %></div>
+        <div><%= link_to 'Dev', dev_path %></div>
+      </nav>
+    </footer>
   </body>
 </html>
