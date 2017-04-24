@@ -1,6 +1,6 @@
 <section>
     <h2><%= link_to blog.title, [@user, blog] %></h2>
-    <p>Posted by <%= link_to blog.user.username, blog.user %> at <%= blog.created_at %></p>
+    <p>Posted by <%= link_to blog.user.username, blog.user %> <%= distance_of_time_in_words(blog.created_at, Time.now) %> ago</p>
     <p>Category: <%= blog.topic.title %></p>
     <p><%= link_to blog.status, [:toggle_status, @user, blog] %></p>
     <p><%= blog.body %></p>

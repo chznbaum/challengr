@@ -13,7 +13,7 @@
     
     <% @user_posts.each do |blog|%>
         <h2><%= link_to blog.title, url_for([@user, blog]) %></h2>
-        <p>Posted at <%= blog.created_at %></p>
+        <p>Posted <%= distance_of_time_in_words(blog.created_at, Time.now) %> ago</p>
         <p>Category: <%= blog.topic.title %></p>
         <p><%= blog.body %></p>
         <p><%= link_to 'Show More', url_for([@user, blog]) %></p>

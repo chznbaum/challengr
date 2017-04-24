@@ -1,7 +1,7 @@
 <%= image_tag @project.main_image %>
 <h1><%= @project.title %></h1>
 <p><em><%= @project.subtitle %></em></p>
-<p>Updated by <%= link_to @project.user.username, @project.user %> at <%= @project.updated_at %></p>
+<p>Updated by <%= link_to @project.user.username, @project.user %> <%= distance_of_time_in_words(@project.updated_at, Time.now) %> ago</p>
 <p><%= @project.description %></p>
 <p><%= link_to 'View Live', @project.view_link %></p>
 <p><%= link_to 'View Source', @project.source_link %></p>

@@ -1,7 +1,7 @@
 <section>
     <h2><%= link_to project.title, [project.user, project] %></h2>
     <p><%= project.subtitle %></p>
-    <p>Updated by <%= link_to project.user.username, project.user %> at <%= project.updated_at %></p>
+    <p>Updated by <%= link_to project.user.username, project.user %> <%= distance_of_time_in_words(project.updated_at, Time.now) %> ago</p>
     <%= image_tag project.thumb_image %>
     <p><%= project.description %></p>
     <p><%= link_to 'Show More', [project.user, project] %></p>
