@@ -6,7 +6,7 @@ module DefaultPageContent
     end
 
     def set_page_defaults
-        @page_title = "Challengr | Your Code Challenge Community"
+        @page_title = "Your Code Challenge Community"
         @seo_keywords = "Challengr code challenges projects blogging programming web development"
     end
 end

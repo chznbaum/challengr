@@ -6,15 +6,19 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @page_title = @blog.title + " by " + @user.username
+    @seo_keywords = @blog.body
   end
 
   # GET /blogs/new
   def new
     @blog = current_user.blogs.new
+    @page_title = "Create a New Post"
   end
 
   # GET /blogs/1/edit
   def edit
+    @page_title = "Editing \"" + @blog.title + "\""
   end
 
   # POST /blogs
