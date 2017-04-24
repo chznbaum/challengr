@@ -1,0 +1,7 @@
+<nav id="top-nav">
+    <div><%= link_to 'Home', root_path %></div>
+    <% if current_user.is_a?(User) %>
+    <div><%= link_to 'Projects', user_projects_path(current_user) %></div>
+    <div><%= link_to 'Profile', user_path(current_user) %></div>
+    <% end %>
+</nav>

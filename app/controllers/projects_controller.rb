@@ -6,20 +6,24 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     @projects = @user.projects.all
+    @page_title = "#{@user.username}'s Projects"
   end
 
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @page_title = @project.title + " by " + @user.username
   end
 
   # GET /projects/new
   def new
     @project = current_user.projects.new
+    @page_title = "Create a New Project"
   end
 
   # GET /projects/1/edit
   def edit
+    @page_title = "Editing \"" + @project.title + "\""
   end
 
   # POST /projects

@@ -7,16 +7,19 @@ class UsersController < ApplicationController
   def profile
     @user = User.find(current_user)
     @user_posts = @user.blogs.paginate(page: params[:page], :per_page => 3)
+    @page_title = "#{@user.username}'s Profile"
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     @user_posts = @user.blogs.paginate(page: params[:page], :per_page => 3)
+    @page_title = "#{@user.username}'s Profile"
   end
 
   # GET /users/1/edit
   def edit
+    @page_title = "Editing \"" + @user.username + "\""
   end
 
   # PATCH/PUT /users/1
@@ -45,6 +48,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @users = @user.following.paginate(page: params[:page])
     render 'show_follow'
+    @page_title = "#{@user.username} is Following..."
   end
 
   def followers
@@ -52,6 +56,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     @users = @user.followers.paginate(page: params[:page])
     render 'show_follow'
+    @page_title = "#{@user.username}'s Followers"
   end
 
   private
