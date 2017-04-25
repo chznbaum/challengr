@@ -1,0 +1,14 @@
+<li>
+    <%= comment.body %>
+    <small>Submitted by <%= comment.user.username %> <%= distance_of_time_in_words(comment.created_at, Time.now) %> ago</small>
+
+    <%= form_for [@user, comment, Comment.new] do |f| %>
+        <%= f.text_area :body, placeholder: "Add a Reply" %><br/>
+        <%= f.hidden_field :comment_id, value: comment.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit "Reply" %>
+    <% end %>
+    <ul>
+        <%= render partial: 'comments/comment', collection: comment.comments %>
+    </ul>
+</li>

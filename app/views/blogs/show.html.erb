@@ -2,6 +2,18 @@
 <p>Posted by <%= link_to @blog.user.username, @blog.user %> <%= distance_of_time_in_words(@blog.created_at, Time.now) %> ago</p>
 <p>Category: <%= @blog.topic.title %></p>
 <p><%= @blog.body %></p>
-<p><%= link_to "Edit Post", [:edit, @blog.user, @blog] %></p>
-<p><%= link_to 'Delete Post', [@blog.user, @blog], method: :delete, data: { confirm: 'Are you sure you want to delete this blog post?' } %></p>
+<% if @user == current_user %>
+    <p><%= link_to "Edit Post", [:edit, @blog.user, @blog] %></p>
+    <p><%= link_to 'Delete Post', [@blog.user, @blog], method: :delete, data: { confirm: 'Are you sure you want to delete this blog post?' } %></p>
+<% end %>
+<h2><%= pluralize(@blog.comments.count, "Comment") %></h2>
+<%= form_for [@user, @blog, Comment.new] do |f| %>
+    <%= f.text_area :body, placeholder: "Add a comment" %><br/>
+    <%= f.hidden_field :blog_id, value: @blog.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit "Add Comment" %>
+<% end %>
+<ul>
+    <%= render(partial: 'comments/comment', collection: @blog.comments) %>
+</ul>
 <p><%= link_to 'Back to Blog Posts', @blog.user %></p>
